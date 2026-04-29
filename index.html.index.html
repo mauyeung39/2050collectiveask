@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 2050 Collective Ask — Rising Majority</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --fuchsia: #E8006F;
+    --fuchsia-bright: #FF2D8A;
+    --purple: #2A0050;
+    --purple-mid: #4A0080;
+    --purple-light: #6B00B5;
+    --black: #0A0A0A;
+    --off-black: #111118;
+    --white: #FFFFFF;
+    --dim: rgba(255,255,255,0.55);
+  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; }
+
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 2.5rem; border-bottom: 1.5px solid rgba(255,255,255,0.12);
+    background: var(--black); position: sticky; top: 0; z-index: 100;
+  }
+  .nav-logo { font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.1rem; color: #fff; letter-spacing: -0.02em; }
+  .nav-logo span { color: var(--fuchsia); font-style: italic; }
+  .nav-links { display: flex; gap: 0.5rem; align-items: center; }
+  .nav-links a {
+    font-size: 0.8rem; font-weight: 500; color: rgba(255,255,255,0.7); text-decoration: none;
+    padding: 0.4rem 0.9rem; border: 1px solid transparent; border-radius: 999px; transition: all 0.16s;
+  }
+  .nav-links a:hover { border-color: rgba(255,255,255,0.3); color: #fff; }
+  .nav-links .cta {
+    background: var(--fuchsia); color: #fff !important; border: 1.5px solid var(--fuchsia) !important;
+    font-weight: 600; box-shadow: 0 0 20px rgba(232,0,111,0.4);
+  }
+  .nav-links .cta:hover { background: var(--fuchsia-bright) !important; box-shadow: 0 0 28px rgba(232,0,111,0.6); }
+
+  .hero { display: grid; grid-template-columns: 1.1fr 0.9fr; min-height: 520px; border-bottom: 1.5px solid rgba(255,255,255,0.1); }
+  .hero-left {
+    padding: 4rem 3rem; border-right: 1.5px solid rgba(255,255,255,0.1);
+    display: flex; flex-direction: column; justify-content: center; gap: 1.5rem;
+    background: linear-gradient(135deg, #0A0A0A 60%, #1A0030 100%);
+  }
+  .hero-logo-lockup { display: flex; flex-direction: column; gap: 0.5rem; }
+  .rm-wordmark { font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.6rem; color: var(--fuchsia); letter-spacing: -0.02em; text-transform: uppercase; }
+  .hero-tagline { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.45); }
+  .hero-divider { width: 40px; height: 2px; background: var(--fuchsia); }
+  .hero-title { font-family: 'Fraunces', serif; font-size: 3.2rem; font-weight: 900; line-height: 1.05; letter-spacing: -0.03em; color: #fff; }
+  .hero-title .accent { color: var(--fuchsia); font-style: italic; }
+  .quote-block {
+    font-family: 'Fraunces', serif; font-style: italic; font-size: 1.15rem;
+    color: rgba(255,255,255,0.6); border-left: 3px solid var(--fuchsia); padding-left: 1rem; line-height: 1.6;
+  }
+  .hero-body { font-size: 0.93rem; color: rgba(255,255,255,0.6); line-height: 1.8; max-width: 420px; }
+  .hero-cta { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--fuchsia); color: #fff; border: 2px solid var(--fuchsia);
+    border-radius: 999px; padding: 0.75rem 2rem; font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.18s;
+    box-shadow: 0 0 24px rgba(232,0,111,0.45); text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--fuchsia-bright); box-shadow: 0 0 36px rgba(232,0,111,0.7); transform: translateY(-1px); }
+  .btn-secondary {
+    background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.3);
+    border-radius: 999px; padding: 0.75rem 2rem; font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.18s; text-decoration: none; display: inline-block;
+  }
+  .btn-secondary:hover { border-color: var(--fuchsia); color: var(--fuchsia); }
+
+  .hero-right {
+    background: var(--purple); display: flex; flex-direction: column;
+    justify-content: center; align-items: center; padding: 3rem 2rem; gap: 1.5rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-right::before {
+    content: ''; position: absolute; top: -60px; right: -60px;
+    width: 240px; height: 240px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,0,111,0.25) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .goal-card {
+    width: 100%; max-width: 320px; background: var(--off-black);
+    border: 1.5px solid rgba(232,0,111,0.4); border-radius: 20px; padding: 1.75rem;
+    box-shadow: 0 0 32px rgba(232,0,111,0.15); position: relative; z-index: 1;
+  }
+  .goal-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.09em; color: var(--fuchsia); margin-bottom: 0.3rem; }
+  .goal-amount { font-family: 'Fraunces', serif; font-size: 2.8rem; font-weight: 900; letter-spacing: -0.03em; color: #fff; }
+  .goal-sub { font-size: 0.8rem; color: var(--dim); margin-top: 0.1rem; margin-bottom: 1.1rem; }
+  .progress-track { background: rgba(255,255,255,0.1); border-radius: 999px; height: 10px; width: 100%; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--purple-light), var(--fuchsia)); width: 0%; transition: width 1.4s cubic-bezier(.16,1,.3,1); }
+  .progress-meta { display: flex; justify-content: space-between; margin-top: 0.6rem; font-size: 0.72rem; color: var(--dim); font-weight: 500; }
+  .timeline-badge {
+    width: 100%; max-width: 320px; background: var(--off-black);
+    border: 1.5px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 1.1rem 1.4rem;
+    display: flex; align-items: center; gap: 1rem; position: relative; z-index: 1;
+  }
+  .tl-num { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 900; color: var(--fuchsia); }
+  .tl-text { font-size: 0.82rem; color: var(--dim); line-height: 1.45; }
+  .tl-text strong { color: #fff; font-weight: 600; }
+
+  .section { padding: 4rem 2.5rem; border-bottom: 1.5px solid rgba(255,255,255,0.08); background: var(--off-black); }
+  .section.alt { background: var(--black); }
+  .section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 2rem; }
+  .section-num { font-family: 'Fraunces', serif; font-size: 1rem; font-style: italic; color: var(--fuchsia); }
+  .section-title { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 900; letter-spacing: -0.02em; color: #fff; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .body-text { font-size: 0.93rem; line-height: 1.82; color: var(--dim); }
+  .highlight-box {
+    background: var(--purple); border: 1.5px solid rgba(232,0,111,0.3); border-radius: 20px;
+    padding: 1.75rem; box-shadow: 0 0 24px rgba(106,0,181,0.2);
+  }
+  .highlight-box h3 { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--fuchsia); }
+  .highlight-box p { font-size: 0.87rem; line-height: 1.72; color: rgba(255,255,255,0.65); }
+  .highlight-box p + p { margin-top: 0.75rem; }
+
+  .strategy-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+  .strategy-card {
+    border: 1.5px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 1.75rem;
+    transition: all 0.2s; background: var(--black);
+  }
+  .strategy-card:hover { border-color: rgba(232,0,111,0.5); box-shadow: 0 0 20px rgba(232,0,111,0.1); transform: translateY(-2px); }
+  .s-tag {
+    display: inline-block; background: rgba(232,0,111,0.15); color: var(--fuchsia);
+    border: 1px solid rgba(232,0,111,0.3); border-radius: 999px; font-size: 0.68rem;
+    font-weight: 600; padding: 0.2rem 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.75rem;
+  }
+  .strategy-card h3 { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; color: #fff; }
+  .strategy-card p { font-size: 0.85rem; line-height: 1.65; color: var(--dim); }
+
+  .fund-section { padding: 4rem 2.5rem; border-bottom: 1.5px solid rgba(255,255,255,0.08); background: var(--purple); }
+  .fund-section .section-num { color: var(--fuchsia); }
+  .fund-section .section-title { color: #fff; }
+  .fund-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2rem; }
+  .fund-card { border: 1.5px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 1.75rem; background: rgba(0,0,0,0.3); transition: all 0.2s; }
+  .fund-card:hover { border-color: rgba(232,0,111,0.4); background: rgba(0,0,0,0.5); }
+  .fund-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+  .fund-card h3 { font-family: 'Fraunces', serif; font-size: 1.05rem; font-weight: 700; color: var(--fuchsia); margin-bottom: 0.5rem; }
+  .fund-card p { font-size: 0.85rem; line-height: 1.65; color: rgba(255,255,255,0.55); }
+
+  .coalition-grid { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
+  .coalition-pill {
+    border-radius: 999px; padding: 0.4rem 1.1rem; font-size: 0.78rem; font-weight: 500;
+    border: 1.5px solid rgba(232,0,111,0.4); color: rgba(255,255,255,0.85);
+    background: rgba(232,0,111,0.08); transition: all 0.16s;
+  }
+  .coalition-pill:hover { background: rgba(232,0,111,0.2); border-color: var(--fuchsia); }
+
+  .donate-section { padding: 4rem 2.5rem; background: var(--off-black); border-bottom: 1.5px solid rgba(255,255,255,0.08); }
+  .donate-section .section-num { color: var(--fuchsia); }
+  .donate-section .section-title { color: #fff; }
+  .donate-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-top: 2rem; }
+  .donate-text { font-size: 0.93rem; line-height: 1.8; color: var(--dim); }
+  .donate-text strong { color: var(--fuchsia); }
+  .donate-text p + p { margin-top: 1rem; }
+  .donate-card { background: var(--black); border: 1.5px solid rgba(232,0,111,0.3); border-radius: 20px; padding: 2rem; box-shadow: 0 0 40px rgba(232,0,111,0.1); }
+  .donate-card h3 { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.75rem; color: #fff; }
+  .connected-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(0,200,100,0.12); border: 1px solid rgba(0,200,100,0.35);
+    border-radius: 999px; padding: 0.3rem 0.85rem; font-size: 0.72rem;
+    font-weight: 600; color: #00C864; margin-bottom: 1.25rem; letter-spacing: 0.04em;
+  }
+  .connected-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C864; display: inline-block; }
+  .amount-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin-bottom: 1.25rem; }
+  .amount-btn {
+    border: 1.5px solid rgba(255,255,255,0.15); border-radius: 12px; padding: 0.85rem 0.75rem;
+    background: transparent; font-family: 'Fraunces', serif; font-size: 1.3rem;
+    font-weight: 700; cursor: pointer; transition: all 0.16s; text-align: center; color: #fff;
+  }
+  .amount-btn small { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.68rem; font-weight: 500; color: var(--dim); margin-top: 2px; }
+  .amount-btn:hover, .amount-btn.active { background: var(--fuchsia); border-color: var(--fuchsia); box-shadow: 0 0 16px rgba(232,0,111,0.4); }
+  .amount-btn.active small { color: rgba(255,255,255,0.75); }
+  .btn-donate {
+    width: 100%; background: var(--fuchsia); color: #fff; border: none;
+    border-radius: 999px; padding: 0.95rem 2rem; font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; font-weight: 600; cursor: pointer;
+    box-shadow: 0 0 28px rgba(232,0,111,0.5); transition: all 0.18s;
+    text-decoration: none; display: block; text-align: center;
+  }
+  .btn-donate:hover { background: var(--fuchsia-bright); box-shadow: 0 0 40px rgba(232,0,111,0.7); transform: translateY(-1px); }
+
+  footer {
+    padding: 2rem 2.5rem; display: flex; justify-content: space-between;
+    align-items: center; flex-wrap: wrap; gap: 1rem;
+    background: var(--black); border-top: 1.5px solid rgba(255,255,255,0.08);
+  }
+  .footer-logo { font-family: 'Fraunces', serif; font-weight: 900; font-size: 1rem; color: #fff; }
+  .footer-logo span { color: var(--fuchsia); font-style: italic; }
+  footer p { font-size: 0.78rem; color: rgba(255,255,255,0.35); }
+  footer a { color: var(--fuchsia) !important; }
+
+  @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+  .hero-left > * { animation: fadeUp 0.55s ease both; }
+  .hero-left > *:nth-child(1){animation-delay:0.1s}
+  .hero-left > *:nth-child(2){animation-delay:0.2s}
+  .hero-left > *:nth-child(3){animation-delay:0.3s}
+  .hero-left > *:nth-child(4){animation-delay:0.4s}
+  .hero-left > *:nth-child(5){animation-delay:0.5s}
+
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { border-right: none; border-bottom: 1.5px solid rgba(255,255,255,0.1); padding: 2.5rem 1.5rem; }
+    .hero-title { font-size: 2.4rem; }
+    .hero-right { padding: 2rem 1.5rem; }
+    .two-col { grid-template-columns: 1fr; gap: 1.5rem; }
+    .strategy-grid { grid-template-columns: 1fr; }
+    .fund-cols { grid-template-columns: 1fr; }
+    .donate-inner { grid-template-columns: 1fr; }
+    .section { padding: 2.5rem 1.5rem; }
+    nav { padding: 1rem 1.5rem; }
+    .nav-links a:not(.cta) { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Rising <span>Majority</span></div>
+  <div class="nav-links">
+    <a href="#origin">Our story</a>
+    <a href="#strategy">Strategy</a>
+    <a href="#coalition">Coalition</a>
+    <a href="https://forms.gle/Db4RHxJe1FBjxFW19" target="_blank" rel="noopener" class="cta">Support us →</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-logo-lockup">
+      <div class="rm-wordmark">The 2050 Collective Ask</div>
+      <div class="hero-tagline">Rising Majority · 2025–2026</div>
+    </div>
+    <div class="hero-divider"></div>
+    <h1 class="hero-title">Another world<br>is <span class="accent">possible.</span></h1>
+    <div class="quote-block">"Another world is possible"</div>
+    <p class="hero-body">The 2050 Collective Ask is a bold, coordinated movement of 85+ organizations building power across issues, sectors, and geographies — together charting a path to a just and sustainable world by 2050.</p>
+    <div class="hero-cta">
+      <a href="https://forms.gle/Db4RHxJe1FBjxFW19" target="_blank" rel="noopener" class="btn-primary">Support the movement</a>
+      <a href="#origin" class="btn-secondary">Our story ↓</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="goal-card">
+      <div class="goal-label">Collective ask</div>
+      <div class="goal-amount">$15M</div>
+      <div class="goal-sub">Over 18 months · First phase of 10-year strategy</div>
+      <div class="progress-track"><div class="progress-fill" id="pbar"></div></div>
+      <div class="progress-meta"><span>Campaign underway</span><span>$15,000,000 goal</span></div>
+    </div>
+    <div class="timeline-badge">
+      <div class="tl-num">85+</div>
+      <div class="tl-text"><strong>Organizations united</strong><br>across labor, youth, climate, abolition, immigrant rights & more</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="origin">
+  <div class="section-header">
+    <span class="section-num">01 —</span>
+    <h2 class="section-title">How we came to be</h2>
+  </div>
+  <div class="two-col">
+    <div>
+      <p class="body-text">Following the 2016 elections, Movement for Black Lives and allied organizations launched <strong>Rising Majority</strong> — a Black-led, multi-racial formation to build power across issues, sectors, and geographies. Since 2017, it has grown to a national coalition of more than 85 organizations committed to transforming how resources are shared, how we govern, and how we care for one another and the planet.</p>
+      <p class="body-text" style="margin-top:1.25rem">In 2024, more than 800 activists, organizers, and scholars convened to bridge divides and chart a path forward. From that gathering, 60+ alliances committed to stay united through the 2024 elections and pursue a shared 2050 vision — and that commitment has only grown stronger.</p>
+    </div>
+    <div>
+      <div class="highlight-box">
+        <h3>The moment we're in</h3>
+        <p>The Trump administration has brought intensified attacks on our communities and the values that ground our work — mutual care, solidarity, and belonging. Our movement remains siloed and under-resourced even as challenges grow more connected.</p>
+        <p>We believe that to win, we must coordinate across sectors, pool our leadership and resources, and act with shared purpose and strategy. This crisis is an opportunity to align and strengthen our individual efforts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="strategy">
+  <div class="section-header">
+    <span class="section-num">02 —</span>
+    <h2 class="section-title">How we'll use the funds</h2>
+  </div>
+  <p class="body-text" style="max-width:680px; margin-bottom:2rem">Resources raised will strengthen Rising Majority and member organizations to <strong style="color:#fff">block and build</strong> — defending communities while advancing the offensive vision for what comes next.</p>
+  <div class="strategy-grid">
+    <div class="strategy-card">
+      <div class="s-tag">Ground game</div>
+      <h3>Base-building & mass organizing</h3>
+      <p>Shared programs of base-building, grassroots campaigns, and organizing between dozens of organizations — building collective identity and infrastructure beyond election cycles.</p>
+    </div>
+    <div class="strategy-card">
+      <div class="s-tag">Co-governance</div>
+      <h3>Divest/Invest campaigns</h3>
+      <p>Praxis tables leading coordination of co-governance initiatives and divest/invest strategies. Practicing democracy at scale and shifting resources toward care and away from harm.</p>
+    </div>
+    <div class="strategy-card">
+      <div class="s-tag">Coordination</div>
+      <h3>Strategic leadership capacity</h3>
+      <p>Capacity for RM's Leadership Team to coordinate in crisis moments, develop strategy as political terrain evolves, and strengthen social movement leadership across sectors.</p>
+    </div>
+    <div class="strategy-card">
+      <div class="s-tag">Narrative</div>
+      <h3>Socializing the 2050 vision</h3>
+      <p>Narrative workers and organizations aligning across sectors to develop mass-facing experiments that bring the 2050 Vision to new bases and audiences.</p>
+    </div>
+  </div>
+</section>
+
+<section class="fund-section">
+  <div class="section-header">
+    <span class="section-num">03 —</span>
+    <h2 class="section-title">How funding is structured</h2>
+  </div>
+  <div class="fund-cols">
+    <div class="fund-card">
+      <div class="fund-icon">🌱</div>
+      <h3>RM-led initiatives</h3>
+      <p>C3, C4, and alternative-entity funding for the Ground Game, co-governance experiments, strategic coordination, and narrative socialization.</p>
+    </div>
+    <div class="fund-card">
+      <div class="fund-icon">🤝</div>
+      <h3>Democratically controlled pooled fund</h3>
+      <p>Governed by a collective body of grassroots organizations and national networks — resources distributed from the bottom up to support shared work.</p>
+    </div>
+    <div class="fund-card">
+      <div class="fund-icon">⚡</div>
+      <h3>Rapid response activation</h3>
+      <p>Maintained capacity to quickly disburse emergency funds that threaten movement infrastructure or multiple RM member organizations.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="coalition">
+  <div class="section-header">
+    <span class="section-num">04 —</span>
+    <h2 class="section-title">RM leadership team</h2>
+  </div>
+  <p class="body-text" style="max-width:620px">The 2050 Collective Ask is guided by a cross-sectoral leadership team representing some of the most powerful grassroots organizations in the country.</p>
+  <div class="coalition-grid">
+    <div class="coalition-pill">Arab Resource Organizing Center</div>
+    <div class="coalition-pill">Center for Third World Organizing</div>
+    <div class="coalition-pill">CAAAV: Organizing Asian Communities</div>
+    <div class="coalition-pill">Grassroots Asian Rising</div>
+    <div class="coalition-pill">Grassroots Global Justice Alliance</div>
+    <div class="coalition-pill">Movement for Black Lives</div>
+    <div class="coalition-pill">Scholars for Social Justice</div>
+    <div class="coalition-pill">Southeast Asian Freedom Network</div>
+    <div class="coalition-pill">United We Dream</div>
+  </div>
+</section>
+
+<section class="donate-section" id="donate">
+  <div class="section-header">
+    <span class="section-num">05 —</span>
+    <h2 class="section-title">Support the collective ask</h2>
+  </div>
+  <div class="donate-inner">
+    <div class="donate-text">
+      <p>We are seeking <strong>$15 million</strong> in C3, C4, and alternative-entity funding over the next 18 months — seeding the first phase of a <strong>10-year strategy</strong> toward the 2050 vision.</p>
+      <p>This is the beginning of a long-term partnership with philanthropy. Our members are also initiating other movement ecosystem asks that will contribute to the 2050 vision.</p>
+      <p style="font-size:0.85rem;opacity:0.65;margin-top:1rem">Funds will be allocated to organizations based on participation in shared programmatic work — not regranted based on membership alone.</p>
+    </div>
+    <div class="donate-card">
+      <h3>Make your contribution</h3>
+      <div class="connected-badge"><span class="connected-dot"></span> Google Form connected</div>
+      <div class="amount-grid">
+        <button class="amount-btn" onclick="selectAmt(this,1000)">$1K<small>Seed change</small></button>
+        <button class="amount-btn active" onclick="selectAmt(this,5000)">$5K<small>Most popular</small></button>
+        <button class="amount-btn" onclick="selectAmt(this,25000)">$25K<small>Big impact</small></button>
+        <button class="amount-btn" onclick="selectAmt(this,0)">Custom<small>Any amount</small></button>
+      </div>
+      <a href="https://forms.gle/Db4RHxJe1FBjxFW19" target="_blank" rel="noopener" class="btn-donate" id="donate-btn">Contribute $5,000 →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">The 2050 <span>Collective</span> Ask · Rising Majority</div>
+  <p>A Black-led, multi-racial, cross-sectoral formation · Est. 2017</p>
+  <p><a href="https://www.2050vision.us/" target="_blank" rel="noopener">2050vision.us ↗</a></p>
+</footer>
+
+<script>
+  setTimeout(function() {
+    var bar = document.getElementById('pbar');
+    if (bar) bar.style.width = '18%';
+  }, 500);
+
+  function selectAmt(el, amt) {
+    document.querySelectorAll('.amount-btn').forEach(function(b){ b.classList.remove('active'); });
+    el.classList.add('active');
+    var btn = document.getElementById('donate-btn');
+    if (amt > 0) {
+      var label = amt >= 1000 ? '$' + (amt/1000) + 'K' : '$' + amt;
+      btn.textContent = 'Contribute ' + label + ' →';
+    } else {
+      btn.textContent = 'Contribute a custom amount →';
+    }
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      var t = document.querySelector(a.getAttribute('href'));
+      if (t) t.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
